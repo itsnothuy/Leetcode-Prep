@@ -1,20 +1,17 @@
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
-import { PlaceholderPanel } from "@/components/placeholder-panel";
+import { PatternsOverview } from "@/components/patterns-overview";
+import { patterns, swatiDataSummary } from "@/data";
 
 export default function PatternsPage() {
   return (
     <Container>
       <PageHeader
         eyebrow="Patterns"
-        title="Pattern overview"
-        description="Pattern groups will show section context and solved counts after the typed data and local progress slices are complete."
+        title="Browse by pattern"
+        description={`${swatiDataSummary.patternCount} Swati patterns grouped by section. Progress is read from localStorage and each card links back to the filtered questions table.`}
       />
-      <PlaceholderPanel
-        title="Patterns placeholder"
-        description="This page is reserved for pattern cards and progress summaries."
-        items={["Pattern name", "Section", "Solved / total"]}
-      />
+      <PatternsOverview patterns={patterns} />
     </Container>
   );
 }
