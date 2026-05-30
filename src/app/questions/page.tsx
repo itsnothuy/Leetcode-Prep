@@ -1,20 +1,17 @@
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
-import { PlaceholderPanel } from "@/components/placeholder-panel";
+import { QuestionsTable } from "@/components/questions-table";
+import { problems, swatiDataSummary } from "@/data";
 
 export default function QuestionsPage() {
   return (
     <Container>
       <PageHeader
         eyebrow="Questions"
-        title="Question table"
-        description="The static Swati question list will land here before search, filters, and progress controls."
+        title="Swati question table"
+        description={`${swatiDataSummary.patternQuestionEntryCount} pattern-question entries, ${swatiDataSummary.uniqueQuestionCount} unique questions, and ${swatiDataSummary.patternCount} patterns. Search, filters, and progress controls come in later PRs.`}
       />
-      <PlaceholderPanel
-        title="Questions placeholder"
-        description="The next data-focused PRs will connect typed Swati data and render official LeetCode links."
-        items={["Problem title", "Pattern", "Section"]}
-      />
+      <QuestionsTable problems={problems} />
     </Container>
   );
 }
