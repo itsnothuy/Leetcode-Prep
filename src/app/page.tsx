@@ -1,6 +1,7 @@
 import { Container } from "@/components/container";
+import { DashboardOverview } from "@/components/dashboard-overview";
 import { PageHeader } from "@/components/page-header";
-import { PlaceholderPanel } from "@/components/placeholder-panel";
+import { patterns, uniqueProblems } from "@/data";
 
 export default function Home() {
   return (
@@ -8,13 +9,9 @@ export default function Home() {
       <PageHeader
         eyebrow="Dashboard"
         title="Prep overview"
-        description="A quiet home base for progress totals, review pressure, and weak sections once tracking data exists."
+        description="A live summary of your local progress across the Swati pattern sheet, with totals, review pressure, and the sections that need the next pass."
       />
-      <PlaceholderPanel
-        title="Dashboard placeholder"
-        description="This space will become the first read on study progress after local progress tracking is added."
-        items={["Total questions", "Solved progress", "Review queue"]}
-      />
+      <DashboardOverview patterns={patterns} uniqueProblems={uniqueProblems} />
     </Container>
   );
 }
