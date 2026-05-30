@@ -17,6 +17,7 @@ import {
 import type { ProgressStatus } from "@/types/progress";
 
 type QuestionsTableProps = {
+  initialPatternId?: string;
   problems: Problem[];
 };
 
@@ -25,7 +26,10 @@ type SortDirection = "asc" | "desc";
 
 const ALL_FILTER_VALUE = "all";
 
-export function QuestionsTable({ problems }: QuestionsTableProps) {
+export function QuestionsTable({
+  initialPatternId,
+  problems,
+}: QuestionsTableProps) {
   const {
     getProblemStatus,
     isLoaded: isProgressLoaded,
@@ -34,7 +38,9 @@ export function QuestionsTable({ problems }: QuestionsTableProps) {
   } = useProblemProgress();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSection, setSelectedSection] = useState(ALL_FILTER_VALUE);
-  const [selectedPatternId, setSelectedPatternId] = useState(ALL_FILTER_VALUE);
+  const [selectedPatternId, setSelectedPatternId] = useState(
+    initialPatternId ?? ALL_FILTER_VALUE,
+  );
   const [selectedDifficulty, setSelectedDifficulty] =
     useState(ALL_FILTER_VALUE);
   const [sortKey, setSortKey] = useState<SortKey>("number");
@@ -44,6 +50,12 @@ export function QuestionsTable({ problems }: QuestionsTableProps) {
   const patternOptions = getPatternOptions(problems);
   const difficultyOptions = getDifficultyOptions(problems);
   const progressSummary = getProgressSummary(problems, getProblemStatus);
+  const selectedPatternFilter = isKnownPatternId(
+    selectedPatternId,
+    patternOptions,
+  )
+    ? selectedPatternId
+    : ALL_FILTER_VALUE;
 
   const normalizedSearch = searchQuery.trim().toLowerCase();
   const filteredProblems = problems
@@ -55,8 +67,8 @@ export function QuestionsTable({ problems }: QuestionsTableProps) {
         selectedSection === ALL_FILTER_VALUE ||
         problem.section === selectedSection;
       const matchesPattern =
-        selectedPatternId === ALL_FILTER_VALUE ||
-        problem.patternId === selectedPatternId;
+        selectedPatternFilter === ALL_FILTER_VALUE ||
+        problem.patternId === selectedPatternFilter;
       const matchesDifficulty =
         selectedDifficulty === ALL_FILTER_VALUE ||
         problem.difficulty === selectedDifficulty;
@@ -75,7 +87,7 @@ export function QuestionsTable({ problems }: QuestionsTableProps) {
   const hasActiveFilters =
     normalizedSearch.length > 0 ||
     selectedSection !== ALL_FILTER_VALUE ||
-    selectedPatternId !== ALL_FILTER_VALUE ||
+    selectedPatternFilter !== ALL_FILTER_VALUE ||
     selectedDifficulty !== ALL_FILTER_VALUE ||
     sortKey !== "number" ||
     sortDirection !== "asc";
@@ -151,7 +163,7 @@ export function QuestionsTable({ problems }: QuestionsTableProps) {
           <label className="flex flex-col gap-2 text-sm font-medium">
             Pattern
             <select
-              value={selectedPatternId}
+              value={selectedPatternFilter}
               onChange={(event) => setSelectedPatternId(event.target.value)}
               className="h-10 rounded-md border border-border bg-background px-3 text-sm font-normal outline-none transition focus:border-accent"
             >
@@ -396,6 +408,16 @@ function getPatternOptions(
     .sort((firstPattern, secondPattern) =>
       firstPattern.name.localeCompare(secondPattern.name),
     );
+}
+
+function isKnownPatternId(
+  patternId: string,
+  patternOptions: { id: string; name: string }[],
+): boolean {
+  return (
+    patternId === ALL_FILTER_VALUE ||
+    patternOptions.some((pattern) => pattern.id === patternId)
+  );
 }
 
 function getDifficultyOptions(
