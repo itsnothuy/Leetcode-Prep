@@ -9,7 +9,7 @@ export default function QuestionsPage() {
       <PageHeader
         eyebrow="Questions"
         title="Swati question table"
-        description={`${swatiDataSummary.patternQuestionEntryCount} pattern-question entries, ${swatiDataSummary.uniqueQuestionCount} unique questions, and ${swatiDataSummary.patternCount} patterns. Search, filters, and sorting are client-side for now; progress controls come in a later PR.`}
+        description={`${swatiDataSummary.patternQuestionEntryCount} pattern-question entries, ${swatiDataSummary.uniqueQuestionCount} unique questions, and ${swatiDataSummary.patternCount} patterns. Search, filters, sorting, and progress tracking are client-side for now.`}
       />
       <QuestionsTable problems={problems} />
     </Container>
