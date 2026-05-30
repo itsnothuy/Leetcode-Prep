@@ -1,6 +1,7 @@
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
-import { PlaceholderPanel } from "@/components/placeholder-panel";
+import { ReviewQueue } from "@/components/review-queue";
+import { uniqueProblems } from "@/data";
 
 export default function ReviewPage() {
   return (
@@ -8,13 +9,9 @@ export default function ReviewPage() {
       <PageHeader
         eyebrow="Review"
         title="Review queue"
-        description="Attempted, need-review, and low-confidence problems will appear here after progress tracking exists."
+        description="A local queue for questions marked Need Review, Attempted, or low confidence. Keep this lightweight for now: no spaced repetition or backend sync yet."
       />
-      <PlaceholderPanel
-        title="Review placeholder"
-        description="This route stays intentionally empty until question statuses can be saved locally."
-        items={["Need review", "Attempted", "Low confidence"]}
-      />
+      <ReviewQueue problems={uniqueProblems} />
     </Container>
   );
 }
