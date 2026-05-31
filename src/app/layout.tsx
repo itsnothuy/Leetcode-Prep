@@ -3,8 +3,9 @@ import { AppShell } from "@/components/app-shell";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "LeetCode Pattern Tracker",
-  description: "Frontend foundation for tracking LeetCode problems by pattern.",
+  title: "LeetCode Pattern Tracker | Swati Sheet Prep",
+  description:
+    "Track Swati LeetCode pattern questions, local progress, review status, and pattern coverage in a frontend-first study dashboard.",
 };
 
 export default function RootLayout({
