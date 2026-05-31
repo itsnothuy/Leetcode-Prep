@@ -21,7 +21,7 @@ function NavLinks({ compact = false }: { compact?: boolean }) {
   return (
     <nav
       aria-label="Primary navigation"
-      className={compact ? "flex gap-2 overflow-x-auto" : "grid gap-1"}
+      className={compact ? "flex gap-2 overflow-x-auto pb-1" : "grid gap-1"}
     >
       {navItems.map((item) => {
         const active = isActivePath(pathname, item.href);
@@ -32,10 +32,10 @@ function NavLinks({ compact = false }: { compact?: boolean }) {
             href={item.href}
             aria-current={active ? "page" : undefined}
             className={[
-              "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+              "rounded-xl px-3 py-2 text-sm font-semibold transition",
               compact ? "shrink-0" : "",
               active
-                ? "bg-accent text-accent-foreground"
+                ? "bg-accent text-accent-foreground shadow-sm"
                 : "text-muted hover:bg-surface-muted hover:text-foreground",
             ]
               .filter(Boolean)
@@ -51,10 +51,10 @@ function NavLinks({ compact = false }: { compact?: boolean }) {
 
 export function TopNav() {
   return (
-    <header className="sticky top-0 z-20 border-b border-border bg-surface/95 px-4 py-3 backdrop-blur lg:hidden">
+    <header className="sticky top-0 z-20 border-b border-border bg-surface/90 px-4 py-3 shadow-sm backdrop-blur lg:hidden">
       <div className="mb-3 flex items-center justify-between gap-3">
         <Link href="/" className="flex items-center gap-2 font-semibold">
-          <span className="grid size-8 place-items-center rounded-md bg-foreground text-sm text-background">
+          <span className="grid size-8 place-items-center rounded-xl bg-foreground text-sm text-background shadow-sm">
             LP
           </span>
           <span>Pattern Tracker</span>
@@ -73,9 +73,9 @@ export function TopNav() {
 
 export function AppSidebar() {
   return (
-    <aside className="sticky top-0 hidden h-screen w-64 shrink-0 border-r border-border bg-surface px-5 py-6 lg:block">
+    <aside className="sticky top-0 hidden h-screen w-64 shrink-0 border-r border-border bg-surface/90 px-5 py-6 shadow-sm backdrop-blur lg:block">
       <Link href="/" className="mb-8 flex items-center gap-3">
-        <span className="grid size-10 place-items-center rounded-md bg-foreground text-sm font-semibold text-background">
+        <span className="grid size-10 place-items-center rounded-2xl bg-foreground text-sm font-semibold text-background shadow-sm">
           LP
         </span>
         <span>
@@ -84,13 +84,13 @@ export function AppSidebar() {
         </span>
       </Link>
       <NavLinks />
-      <div className="mt-8 rounded-md border border-border bg-surface-muted p-4">
-        <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-          Current Slice
+      <div className="mt-8 rounded-2xl border border-border bg-surface-muted/80 p-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
+          Local-first MVP
         </p>
-        <p className="mt-2 text-sm font-medium">App shell and placeholders</p>
+        <p className="mt-2 text-sm font-semibold">Static data, local progress</p>
         <p className="mt-1 text-xs leading-5 text-muted">
-          Data and progress stay untouched until the next PRs.
+          Backend sync stays deferred until the tracker is useful on its own.
         </p>
       </div>
     </aside>

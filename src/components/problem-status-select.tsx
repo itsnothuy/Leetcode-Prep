@@ -52,7 +52,7 @@ export function ProblemStatusSelect({
 
 function getStatusSelectClassName(status: ProgressStatus): string {
   const baseClassName =
-    "h-9 min-w-36 rounded-md border bg-background px-2 text-sm font-medium outline-none transition focus:border-accent disabled:cursor-not-allowed disabled:opacity-60";
+    "h-9 min-w-36 rounded-full border bg-background px-3 text-sm font-semibold outline-none transition focus:border-accent disabled:cursor-not-allowed disabled:opacity-60";
   const statusClassNames: Record<ProgressStatus, string> = {
     "not-started": "border-border text-muted",
     attempted: "border-warning/60 text-warning",

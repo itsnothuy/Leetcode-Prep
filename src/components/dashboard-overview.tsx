@@ -49,7 +49,7 @@ export function DashboardOverview({
   return (
     <section className="space-y-6">
       {storageError ? (
-        <p className="rounded-md border border-warning/40 bg-warning/10 px-4 py-3 text-sm font-medium text-warning">
+        <p className="rounded-xl border border-warning/40 bg-warning/10 px-4 py-3 text-sm font-medium text-warning">
           {storageError}
         </p>
       ) : null}
@@ -77,7 +77,7 @@ export function DashboardOverview({
         />
       </div>
 
-      <div className="rounded-lg border border-border bg-surface p-5 shadow-sm">
+      <div className="rounded-2xl border border-border bg-surface/90 p-5 shadow-sm">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">
@@ -112,7 +112,7 @@ export function DashboardOverview({
       </div>
 
       <div className="grid gap-4 lg:grid-cols-[1.3fr_0.7fr]">
-        <section className="rounded-lg border border-border bg-surface p-5 shadow-sm">
+        <section className="rounded-2xl border border-border bg-surface/90 p-5 shadow-sm">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-accent">
@@ -137,13 +137,13 @@ export function DashboardOverview({
               ))}
             </div>
           ) : (
-            <p className="mt-5 rounded-md bg-surface-muted px-4 py-5 text-sm leading-6 text-muted">
+            <p className="mt-5 rounded-xl bg-surface-muted px-4 py-5 text-sm leading-6 text-muted">
               Every section is solved. That is a very good problem to have.
             </p>
           )}
         </section>
 
-        <aside className="rounded-lg border border-border bg-surface p-5 shadow-sm">
+        <aside className="rounded-2xl border border-border bg-surface/90 p-5 shadow-sm">
           <p className="text-xs font-semibold uppercase tracking-widest text-accent">
             Next study move
           </p>
@@ -155,13 +155,13 @@ export function DashboardOverview({
           <div className="mt-5 flex flex-col gap-3">
             <Link
               href="/questions"
-              className="rounded-md bg-accent px-4 py-2 text-center text-sm font-semibold text-accent-foreground transition hover:opacity-90"
+              className="rounded-xl bg-accent px-4 py-2 text-center text-sm font-semibold text-accent-foreground transition hover:opacity-90"
             >
               Open questions
             </Link>
             <Link
               href="/review"
-              className="rounded-md border border-border px-4 py-2 text-center text-sm font-semibold transition hover:border-accent hover:text-accent"
+              className="rounded-xl border border-border px-4 py-2 text-center text-sm font-semibold transition hover:border-accent hover:text-accent"
             >
               Check review queue
             </Link>
@@ -180,8 +180,8 @@ type StatCardProps = {
 
 function StatCard({ detail, label, value }: StatCardProps) {
   return (
-    <div className="rounded-lg border border-border bg-surface p-5 shadow-sm">
-      <p className="text-xs font-semibold uppercase tracking-widest text-muted">
+    <div className="rounded-2xl border border-border bg-surface/90 p-5 shadow-sm">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
         {label}
       </p>
       <p className="mt-3 text-3xl font-semibold">{value}</p>
