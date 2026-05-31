@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import {
+  DifficultyBadge,
+  ProblemNumberBadge,
+} from "@/components/problem-badges";
 import { ProblemStatusSelect } from "@/components/problem-status-select";
 import { useProblemProgress } from "@/hooks/use-problem-progress";
 import {
-  formatDifficulty,
-  formatProblemNumber,
   formatSectionName,
 } from "@/lib/problem-display";
 import { getProgressStatusLabel } from "@/lib/progress";
@@ -91,8 +93,8 @@ type ReviewSummaryCardProps = {
 
 function ReviewSummaryCard({ label, value }: ReviewSummaryCardProps) {
   return (
-    <div className="rounded-lg border border-border bg-surface p-4 shadow-sm">
-      <p className="text-xs font-semibold uppercase tracking-widest text-muted">
+    <div className="rounded-2xl border border-border bg-surface/90 p-4 shadow-sm">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
         {label}
       </p>
       <p className="mt-2 text-2xl font-semibold">{value}</p>
@@ -116,13 +118,11 @@ function ReviewProblemCard({
   const { problem, progress, reason } = item;
 
   return (
-    <article className="rounded-lg border border-border bg-surface p-5 shadow-sm">
+    <article className="rounded-2xl border border-border bg-surface/90 p-5 shadow-sm">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-surface-muted px-2.5 py-1 font-mono text-xs font-semibold text-muted">
-              {formatProblemNumber(problem.number)}
-            </span>
+            <ProblemNumberBadge number={problem.number} />
             <span className="rounded-full border border-warning/40 bg-warning/10 px-2.5 py-1 text-xs font-semibold text-warning">
               {reason}
             </span>
@@ -137,10 +137,12 @@ function ReviewProblemCard({
               {problem.title}
             </a>
           </h2>
-          <p className="mt-2 text-sm leading-6 text-muted">
-            {problem.patternName}, {formatSectionName(problem.section)},{" "}
-            {formatDifficulty(problem.difficulty)}
-          </p>
+          <div className="mt-3 flex flex-wrap items-center gap-2 text-sm text-muted">
+            <span>{problem.patternName}</span>
+            <span aria-hidden="true">/</span>
+            <span>{formatSectionName(problem.section)}</span>
+            <DifficultyBadge difficulty={problem.difficulty} />
+          </div>
         </div>
 
         <div className="shrink-0">
@@ -153,7 +155,7 @@ function ReviewProblemCard({
         </div>
       </div>
 
-      <dl className="mt-5 grid gap-3 rounded-md bg-surface-muted p-4 text-sm sm:grid-cols-3">
+      <dl className="mt-5 grid gap-3 rounded-xl bg-surface-muted/80 p-4 text-sm sm:grid-cols-3">
         <ReviewMeta label="Status" value={getProgressStatusLabel(status)} />
         <ReviewMeta label="Attempts" value={progress.attempts.toString()} />
         <ReviewMeta label="Last updated" value={formatUpdatedAt(progress)} />
@@ -186,8 +188,8 @@ function ReviewMeta({ label, value }: ReviewMetaProps) {
 
 function ReviewEmptyState() {
   return (
-    <div className="rounded-lg border border-dashed border-border bg-surface p-8 text-center">
-      <p className="text-xs font-semibold uppercase tracking-widest text-accent">
+    <div className="rounded-2xl border border-dashed border-border bg-surface/90 p-8 text-center shadow-sm">
+      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
         Nothing to review
       </p>
       <h2 className="mt-3 text-2xl font-semibold">Your review queue is clear</h2>
@@ -198,7 +200,7 @@ function ReviewEmptyState() {
       </p>
       <Link
         href="/questions"
-        className="mt-6 inline-flex rounded-md bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground transition hover:opacity-90"
+        className="mt-6 inline-flex rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground transition hover:opacity-90"
       >
         Open questions
       </Link>

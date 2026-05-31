@@ -21,10 +21,10 @@ export function PatternsOverview({ patterns }: PatternsOverviewProps) {
           <Link
             key={pattern.id}
             href={`/questions?pattern=${encodeURIComponent(pattern.id)}`}
-            className="group flex min-h-56 flex-col justify-between rounded-lg border border-border bg-surface p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-accent hover:shadow-md"
+            className="group flex min-h-56 flex-col justify-between rounded-2xl border border-border bg-surface/90 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-accent hover:shadow-md"
           >
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-muted">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
                 Pattern {pattern.number}
               </p>
               <h2 className="mt-3 text-xl font-semibold leading-7 group-hover:text-accent">
@@ -64,7 +64,7 @@ export function PatternsOverview({ patterns }: PatternsOverviewProps) {
                   style={{ width: `${progress.percentComplete}%` }}
                 />
               </div>
-              <p className="mt-4 text-sm font-medium text-accent">
+              <p className="mt-4 text-sm font-semibold text-accent">
                 View questions
               </p>
             </div>
