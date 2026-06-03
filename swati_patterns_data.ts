@@ -400,8 +400,8 @@ export const swatiPatterns: PatternGroup[] = [
     "problems": [
       {
         "number": 1,
-        "title": "TwoSum",
-        "url": "https://leetcode.com/problems/twosum/"
+        "title": "Two Sum",
+        "url": "https://leetcode.com/problems/two-sum/"
       },
       {
         "number": 438,
